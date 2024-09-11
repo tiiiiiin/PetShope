@@ -80,7 +80,7 @@ namespace PetShop321.Pages
 
         private void GuestButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Classes.Manager.MainFrame.Navigate(new Pages.ViewProductPage());
         }
     }
 }

@@ -10,6 +10,12 @@
         <Style TargetType="Label">
             <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
         </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+        </Style>
         <Style TargetType="TextBox">
             <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
             <Setter Property="Width" Value="300"></Setter>
