@@ -15,11 +15,20 @@ namespace PetShop321.Data
     
     public partial class Trade2Entities : DbContext
     {
+        private static Trade2Entities _context;
         public Trade2Entities()
             : base("name=Trade2Entities")
         {
         }
-    
+        public static Trade2Entities GetContext()
+        {
+            if (_context == null)
+            {
+                _context = new Trade2Entities();
+            }
+            return _context;
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

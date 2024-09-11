@@ -9,6 +9,8 @@
       Title="ViewProductPage">
 
     <Grid>
+        <Label Content="gfjsdh" VerticalAlignment="Center"
+               HorizontalAlignment="Center"></Label>
         
     </Grid>
 </Page>

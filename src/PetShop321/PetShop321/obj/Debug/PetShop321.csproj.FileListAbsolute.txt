@@ -34,3 +34,12 @@ C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\obj\Debug\PetShop321
 C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\obj\Debug\PetShop321.csproj.CoreCompileInputs.cache
 C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\obj\Debug\PetShop321.exe
 C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\obj\Debug\PetShop321.pdb
+C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\bin\Debug\EntityFramework.dll
+C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\bin\Debug\EntityFramework.xml
+C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\obj\Debug\Pages\ViewProductPage.g.cs
+C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\obj\Debug\PetShop321_Content.g.cs
+C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\obj\Debug\Pages\ViewProductPage.baml
+C:\Users\lisav\Desktop\321petshop\src\PetShop321\PetShop321\obj\Debug\PetShop321.csproj.CopyComplete

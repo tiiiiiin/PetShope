@@ -24,6 +24,8 @@ namespace PetShop321
         {
             InitializeComponent();
 
+            Classes.Manager.GetImageData();
+
             Classes.Manager.MainFrame = MainFrame;
             Classes.Manager.MainFrame.Navigate(new Pages.LoginPage());
         }
