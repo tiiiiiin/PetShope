@@ -20,7 +20,7 @@
                Content="11/65" Margin="10,0,0,0"></Label>
         <Label x:Name="FIOLabel" HorizontalAlignment="Right"
                VerticalAlignment="Center" Grid.Row="0"
-               Content="ФИО" Margin="0,0,10,0"></Label>
+               Content="" Margin="0,0,10,0"></Label>
         <Grid Grid.Row="1">
             <TextBox x:Name="SeachTextBox" VerticalAlignment="Center"
                      Width="130" HorizontalAlignment="Left"
@@ -38,6 +38,8 @@
                       Width="200" DisplayMemberPath="Name"
                       SelectionChanged="ManufacturerComboBox_SelectionChanged"></ComboBox>
         </Grid>
+        <Button x:Name="BackButton" Content="Назад" Grid.Row="3" Click="BackButton_Click_1"></Button>
+        
         <ListView x:Name="ProductListView" Margin="10" Grid.Row="2"
                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
             <ListView.ItemTemplate>
@@ -77,6 +79,7 @@
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
+            
         </ListView>
         
     </Grid>

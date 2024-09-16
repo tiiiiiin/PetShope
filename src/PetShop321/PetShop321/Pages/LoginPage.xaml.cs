@@ -51,6 +51,7 @@ namespace PetShop321.Pages
                     var user = Data.Trade2Entities.GetContext().User
                         .Where(d => d.UserLogin == LoginTextBox.Text
                         && d.UserPassword == PasswordBox.Password).FirstOrDefault();
+                    Classes.Manager.CurrentUser = user;
                     switch (user.Role.RoleName)
                     {
                         case "Администратор":
@@ -81,6 +82,7 @@ namespace PetShop321.Pages
         private void GuestButton_Click(object sender, RoutedEventArgs e)
         {
             Classes.Manager.MainFrame.Navigate(new Pages.ViewProductPage());
+
         }
     }
 }
