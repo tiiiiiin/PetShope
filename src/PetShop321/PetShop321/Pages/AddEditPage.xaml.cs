@@ -69,7 +69,7 @@ namespace PetShop321.Pages
                     NameTextBox.Text = CurrentProduct.ProductName.Name;
                     //CategoryComboBox.SelectedItem = Data.Trade2Entities.GetContext().Category.Where(d => d.Id = CurrentProduct.IdProductCategory).FirstOrDefault();
                     //ProductImage
-                    //UnitTextBox.Text = CurrentProduct.ProductUnit.Name;
+                    UnitTextBox.Text = CurrentProduct.Unites.Name;
                     SupplierTextBox.Text = CurrentProduct.Supplier.Name;
                     CostTextBox.Text = CurrentProduct.ProductCost.ToString();
                     QuantityTextBox.Text = CurrentProduct.ProductQuantityInStock.ToString();
@@ -93,7 +93,73 @@ namespace PetShop321.Pages
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                StringBuilder errors = new StringBuilder();
+                if (string.IsNullOrEmpty(NameTextBox.Text))
+                {
+                    errors.AppendLine("Заполните наименование");
+                }
+                if (CategoryComboBox.SelectedItem == null)
+                {
+                    errors.AppendLine("Выберите категорию");
+                }
+                if (string.IsNullOrEmpty(QuantityTextBox.Text))
+                {
+                    errors.AppendLine("Заполните наименование");
+                }
+                else
+                {
+                    var tryQuantity = Int32.TryParse(QuantityTextBox.Text, out var resultQuantity);
+                    if (!tryQuantity)
+                    {
+                        errors.AppendLine("Количество - целое число");
+                    }
+                }
+                if (string.IsNullOrEmpty(UnitTextBox.Text))
+                {
+                    errors.AppendLine("Заполните ед.измерения");
+                }
+                if (string.IsNullOrEmpty(SupplierTextBox.Text))
+                {
+                    errors.AppendLine("Заполните поставщика");
+                }
+                if (string.IsNullOrEmpty(CostTextBox.Text))
+                {
+                    errors.AppendLine("Заполните наименование");
+                }
+                else
+                {
+                    var tryCost = Decimal.TryParse(CostTextBox.Text, out var resultCost);
+                    if (!tryCost)
+                    {
+                        errors.AppendLine("");
+                    }
+                    else
+                    {
 
+                    }
+                    if(tryCost && resultCost < 0)
+                    {
+                        errors.AppendLine("Стоимость не может быть отрицательной");
+                    }
+                }
+                if (string.IsNullOrEmpty(DescriptionTextBox.Text))
+                {
+                    errors.AppendLine("Заполните описание");
+                }
+                //обработать фото ограничение по размеру
+                if (errors.Length > 0)
+                {
+                    MessageBox.Show(errors.ToString(), "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

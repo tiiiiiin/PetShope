@@ -70,3 +70,7 @@ C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\PetShop321.c
 C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\PetShop321.csproj.CopyComplete
 C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\PetShop321.exe
 C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\PetShop321.pdb
+C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\AddEditPage.g.cs
+C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\AdminPage.g.cs
+C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\AddEditPage.baml
+C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\AdminPage.baml

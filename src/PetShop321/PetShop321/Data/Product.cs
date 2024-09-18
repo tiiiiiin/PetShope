@@ -23,7 +23,7 @@ namespace PetShop321.Data
         public int Id { get; set; }
         public string ArticleNum { get; set; }
         public int IdProductName { get; set; }
-        public string ProductUnit { get; set; }
+        public int ProductUnit { get; set; }
         public decimal ProductCost { get; set; }
         public int ProductDiscountAmount { get; set; }
         public int IdProductManufacturer { get; set; }
@@ -41,5 +41,6 @@ namespace PetShop321.Data
         public virtual ICollection<OrderProduct> OrderProduct { get; set; }
         public virtual ProductName ProductName { get; set; }
         public virtual Supplier Supplier { get; set; }
+        public virtual Unites Unites { get; set; }
     }
 }

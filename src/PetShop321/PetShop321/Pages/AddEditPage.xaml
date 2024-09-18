@@ -40,7 +40,7 @@
 
             <TextBox x:Name="IdTextBox" Grid.Row="0" Grid.Column="1"></TextBox>
             <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.Column="1"></TextBox>
-            <ComboBox x:Name="CategoryComboBox" Grid.Row="2" Grid.Column="1" ></ComboBox>
+            <ComboBox x:Name="CategoryComboBox" Grid.Row="2" Grid.Column="1" DisplayMemberPath="Name" VerticalAlignment="Top"></ComboBox>
             <TextBox x:Name="QuantityTextBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"></TextBox>
             <TextBox x:Name="UnitTextBox" Grid.Row="4" Grid.Column="1"></TextBox>
 

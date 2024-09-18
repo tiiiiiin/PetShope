@@ -47,7 +47,8 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"></ColumnDefinition>
-                            <ColumnDefinition Width="400"></ColumnDefinition>
+                            <ColumnDefinition Width="300"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
                             <ColumnDefinition Width="150"></ColumnDefinition>
                             <ColumnDefinition Width="150"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
@@ -74,9 +75,9 @@
                         </StackPanel>
                         <TextBlock Grid.Column="2" Text="{Binding ProductQuantityInStock,
                             StringFormat={}Наличие на складе: {0}}" VerticalAlignment="Center"></TextBlock>
-                        <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Grid.Column="4"
-                                Width="150"></Button>
-                        <Button x:Name="EditButton" Content="Редактировать" Click="EditButton_Click" Grid.Column="3"></Button>
+                        <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Grid.Column="3" Width="60"
+                                ></Button>
+                        <Button x:Name="EditButton" Content="Редактировать" Click="EditButton_Click" Grid.Column="4" Width="100" ></Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
