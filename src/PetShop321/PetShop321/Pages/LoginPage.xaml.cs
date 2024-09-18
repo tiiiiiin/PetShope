@@ -20,12 +20,13 @@ namespace PetShop321.Pages
     /// </summary>
     public partial class LoginPage : Page
     {
+        private int failedAttempts = 0;
         public LoginPage()
         {
             InitializeComponent();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -43,6 +44,23 @@ namespace PetShop321.Pages
                     MessageBox.Show(errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+                if (failedAttempts > 0)
+                {
+                    if (string.IsNullOrEmpty(CaptchaWriteBox.Text))
+                    {
+                        MessageBox.Show("Введите капчу", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        LoadCaptcha();
+                        return;
+                    }
+
+                    if (!CaptchaWriteBox.Text.Equals(CaptchaBox.Text, StringComparison.Ordinal))
+                    {
+                        MessageBox.Show("Неверная капча!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        CaptchaWriteBox.Text = "";
+                        LoadCaptcha();
+                        return;
+                    }
+                }
 
                 if (Data.Trade2Entities.GetContext().User
                     .Any(d => d.UserLogin == LoginTextBox.Text
@@ -55,7 +73,7 @@ namespace PetShop321.Pages
                     switch (user.Role.RoleName)
                     {
                         case "Администратор":
-                            Classes.Manager.MainFrame.Navigate(new Pages.ViewProductPage());
+                            Classes.Manager.MainFrame.Navigate(new Pages.AdminPage());
                             break;
                         case "Клиент":
                             Classes.Manager.MainFrame.Navigate(new Pages.ViewProductPage());
@@ -68,7 +86,16 @@ namespace PetShop321.Pages
                 }
                 else
                 {
-                    MessageBox.Show("Учетной записи не найдено", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Учетная запись не найдена", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    failedAttempts++;
+                    LoadCaptcha();
+                    ShowCaptchaFields();
+                    if (failedAttempts > 1)
+                    {
+                        LoginButton.IsEnabled = false;
+                        await Task.Delay(10000);
+                        LoginButton.IsEnabled = true;
+                    }
                 }
 
             }
@@ -78,11 +105,30 @@ namespace PetShop321.Pages
             }
 
         }
+        private void LoadCaptcha()
+        {
+            string allowChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+            string captcha = "";
+            Random random = new Random();
+
+            for (int i = 0; i < 4; i++)
+            {
+                captcha += allowChars[random.Next(allowChars.Length)];
+            }
+
+            CaptchaBox.Text = captcha;
+        }
 
         private void GuestButton_Click(object sender, RoutedEventArgs e)
         {
             Classes.Manager.MainFrame.Navigate(new Pages.ViewProductPage());
 
+        }
+        private void ShowCaptchaFields()
+        {
+            LabelCaptcha.Visibility = Visibility.Visible;
+            CaptchaBox.Visibility = Visibility.Visible;
+            CaptchaWriteBox.Visibility = Visibility.Visible;
         }
     }
 }

@@ -67,6 +67,30 @@ namespace PetShop321.Pages {
         
         #line 19 "..\..\..\Pages\LoginPage.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Label LabelCaptcha;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 20 "..\..\..\Pages\LoginPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox CaptchaBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 34 "..\..\..\Pages\LoginPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox CaptchaWriteBox;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 35 "..\..\..\Pages\LoginPage.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button GuestButton;
         
         #line default
@@ -118,9 +142,18 @@ namespace PetShop321.Pages {
             #line hidden
             return;
             case 4:
+            this.LabelCaptcha = ((System.Windows.Controls.Label)(target));
+            return;
+            case 5:
+            this.CaptchaBox = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 6:
+            this.CaptchaWriteBox = ((System.Windows.Controls.TextBox)(target));
+            return;
+            case 7:
             this.GuestButton = ((System.Windows.Controls.Button)(target));
             
-            #line 20 "..\..\..\Pages\LoginPage.xaml"
+            #line 36 "..\..\..\Pages\LoginPage.xaml"
             this.GuestButton.Click += new System.Windows.RoutedEventHandler(this.GuestButton_Click);
             
             #line default

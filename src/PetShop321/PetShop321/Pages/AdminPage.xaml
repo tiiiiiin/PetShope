@@ -1,11 +1,11 @@
-﻿<Page x:Class="PetShop321.Pages.ViewProductPage"
+﻿<Page x:Class="PetShop321.Pages.AdminPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PetShop321.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="1000"
+       d:DesignHeight="650" d:DesignWidth="1000"
       Title="ИС товары для животных - Просмотр товаров">
 
     <Grid>
@@ -38,19 +38,10 @@
                       Width="200" DisplayMemberPath="Name"
                       SelectionChanged="ManufacturerComboBox_SelectionChanged"></ComboBox>
         </Grid>
-        <Button x:Name="BackButton" Content="Назад" Grid.Row="3" Click="BackButton_Click_1"></Button>
-        
+        <Button x:Name="BackButton" Content="Назад" Grid.Row="3" Click="BackButton_Click_1" HorizontalAlignment="Left"></Button>
+        <Button x:Name="AddButton"  Content="Добавить" Grid.Row="3" Click="AddButton_Click" HorizontalAlignment="Right"></Button>
         <ListView x:Name="ProductListView" Margin="10" Grid.Row="2"
                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ProductQuantityInStock}" Value="0">
-                            <Setter Property="Background" Value="#FF595757"></Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -83,13 +74,14 @@
                         </StackPanel>
                         <TextBlock Grid.Column="2" Text="{Binding ProductQuantityInStock,
                             StringFormat={}Наличие на складе: {0}}" VerticalAlignment="Center"></TextBlock>
-                        <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Grid.Column="3"
+                        <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Grid.Column="4"
                                 Width="150"></Button>
+                        <Button x:Name="EditButton" Content="Редактировать" Click="EditButton_Click" Grid.Column="3"></Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            
+
         </ListView>
-        
+
     </Grid>
 </Page>
