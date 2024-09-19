@@ -133,13 +133,18 @@ namespace PetShop321.Pages
                     var tryCost = Decimal.TryParse(CostTextBox.Text, out var resultCost);
                     if (!tryCost)
                     {
-                        errors.AppendLine("");
+                        errors.AppendLine("Стоимость должна быть числом");
                     }
                     else
                     {
-
+                        // Проверить количество знаков после запятой (максимум 2 знака)
+                        int decimalPlaces = BitConverter.GetBytes(decimal.GetBits(resultCost)[3])[2];
+                        if (decimalPlaces > 2)
+                        {
+                            errors.AppendLine("Стоимость может содержать не более 2 знаков после запятой");
+                        }
                     }
-                    if(tryCost && resultCost < 0)
+                    if (tryCost && resultCost < 0)
                     {
                         errors.AppendLine("Стоимость не может быть отрицательной");
                     }
@@ -148,11 +153,63 @@ namespace PetShop321.Pages
                 {
                     errors.AppendLine("Заполните описание");
                 }
+                if (ProductImage != null)  // Предположим, что переменная Photo — это изображение
+                {
+                    if (ProductImage.Width != 300 || ProductImage.Height != 200)
+                    {
+                        errors.AppendLine("Размер фото должен быть 300x200 пикселей.");
+                    }
+                }
                 //обработать фото ограничение по размеру
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString(), "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
+                }
+
+                var selectedCategory = CategoryComboBox.SelectedItem as Data.Category;
+                CurrentProduct.IdProductCategory = selectedCategory.Id;
+
+                CurrentProduct.ProductCost = Convert.ToDecimal(CostTextBox.Text);
+                CurrentProduct.ProductQuantityInStock = Convert.ToInt32(QuantityTextBox.Text);
+                CurrentProduct.ProductDescription = DescriptionTextBox.Text;
+
+                var searchName = (from obj in Data.Trade2Entities.GetContext().ProductName
+                                  where obj.Name == NameTextBox.Text
+                                  select obj).FirstOrDefault();
+                if(searchName != null)
+                {
+                    CurrentProduct.IdProductName = searchName.Id;
+                }
+                else
+                {
+                    Data.ProductName productName = new Data.ProductName() 
+                    { 
+                        Name = NameTextBox.Text
+                    };
+                    Data.Trade2Entities.GetContext().ProductName.Add(productName);
+                    Data.Trade2Entities.GetContext().SaveChanges();
+
+                    CurrentProduct.IdProductName = productName.Id;
+
+                }
+
+                //unittextbox
+                //supplertextbox
+                //photo add to bd посмотреть из метода где мы фото добавляли
+                // в бд поставить значения нуль для столбцов мануфактурер и тд/ проверить арктикул
+
+                if(FlagAddOrEdit == "edit")
+                {
+                    Data.Trade2Entities.GetContext().SaveChanges();
+                    MessageBox.Show("Успешно сохранено!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else if (FlagAddOrEdit == "add")
+                {
+                    Data.Trade2Entities.GetContext().Product.Add(CurrentProduct);
+                    Data.Trade2Entities.GetContext().SaveChanges();
+
+                    MessageBox.Show("Успешно добавлено!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
 
             }
