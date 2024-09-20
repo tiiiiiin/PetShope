@@ -46,7 +46,7 @@
 
             <TextBox x:Name="SupplierTextBox" Grid.Row="0" Grid.Column="3"></TextBox>
             <TextBox x:Name="CostTextBox" Grid.Row="1" Grid.Column="3"></TextBox>
-            <Image x:Name="ProductImage" Grid.Row="2" Grid.Column="3" Margin="10">
+            <Image x:Name="ProductImage" Grid.Row="2" Grid.Column="3" Margin="10" MouseDown="ProductImage_MouseDown">
                 <Image.Source>
                     <Binding Path="ProductPhoto">
                         <Binding.TargetNullValue>

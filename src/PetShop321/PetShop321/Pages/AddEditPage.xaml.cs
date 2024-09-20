@@ -218,5 +218,24 @@ namespace PetShop321.Pages
                 MessageBox.Show(ex.ToString(), "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void ProductImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog 
+            { 
+                Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png; *.jpeg; *.jpg|All files (*.*)|*.*"
+            };
+
+            if(openFileDialog.ShowDialog() == true)
+            {
+                //try
+                //{
+
+                //    BitmapImage bitmap = new BitmapImage(new Uri(openFileDialog.FileName));
+
+                //    if (bitmap.PixelHeight <= 300 && bitmapWid  
+                //}
+            }
+        }
     }
 }
