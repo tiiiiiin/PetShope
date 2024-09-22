@@ -16,13 +16,15 @@ using System.Windows.Shapes;
 namespace PetShop321.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AdminPage.xaml
+    /// Логика взаимодействия для ManagerPage.xaml
     /// </summary>
-    public partial class AdminPage : Page
+    public partial class ManagerPage : Page
     {
-        public AdminPage()
+        public ManagerPage()
         {
-            InitializeComponent(); init();
+            InitializeComponent(); 
+
+            init();
         }
         public void init()
         {
@@ -43,7 +45,7 @@ namespace PetShop321.Pages
             manufactList.Insert(0, new Data.Manufacturer { Name = "Все производители" });
             ManufacturerComboBox.ItemsSource = manufactList;
             ManufacturerComboBox.SelectedIndex = 0;
-            if (Classes.Manager.CurrentUser != null && Classes.Manager.CurrentUser.Role.RoleName == "Администратор")
+            if (Classes.Manager.CurrentUser != null && Classes.Manager.CurrentUser.Role.RoleName == "Менеджер")
             {
                 BackButton.Visibility = Visibility.Visible;
             }
@@ -56,7 +58,8 @@ namespace PetShop321.Pages
             {
                 _currentProducts = Data.Trade2Entities.GetContext().Product.ToList();
                 _currentProducts = (from item in Data.Trade2Entities.GetContext().Product
-                                    where item.ProductName.Name.ToLower().Contains(SeachTextBox.Text) ||
+                                    where
+                                    item.ProductName.Name.ToLower().Contains(SeachTextBox.Text) ||
                                     item.ProductDescription.ToLower().Contains(SeachTextBox.Text) ||
                                     item.Manufacturer.Name.ToLower().Contains(SeachTextBox.Text) ||
                                     item.ProductCost.ToString().ToLower().Contains(SeachTextBox.Text) ||
@@ -106,48 +109,46 @@ namespace PetShop321.Pages
             Update();
 
         }
+
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                var selected = (sender as Button).DataContext as Data.Product;
-                var forDelete = Data.Trade2Entities.GetContext().OrderProduct.Where(d => d.IdProduct == selected.Id).ToList();
-                if (forDelete.Count() > 0)
-                {
-                    MessageBox.Show("ТоварБ который присутствует в заказе, удалить нельзя!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
-                    Data.Trade2Entities.GetContext().Product.Remove(selected);
-                    Data.Trade2Entities.GetContext().SaveChanges();
-                    MessageBox.Show("Успешно!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    Update();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+            //try
+            //{
+            //    var selected = (sender as Button).DataContext as Data.Product;
+            //    var forDelete = Data.Trade2Entities.GetContext().OrderProduct.Where(d => d.IdProduct == selected.Id).ToList();
+            //    if(forDelete.Count() > 0)
+            //    {
+            //        MessageBox.Show("Товар, который присутствует в заказе, удалить нельзя!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    }
+            //    else
+            //    {
+            //        Data.Trade2Entities.GetContext().Product.Remove(selected);
+            //        Data.Trade2Entities.GetContext().SaveChanges();
+            //        MessageBox.Show("Успешно!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+            //        Update();
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
         }
 
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            Classes.Manager.MainFrame.Navigate(new Pages.AddEditPage(null));
 
         }
 
         private void BackButton_Click_1(object sender, RoutedEventArgs e)
         {
+            FIOLabel.Visibility = Visibility.Collapsed;
+
+            //Classes.Manager.User = null;
+
             if (Classes.Manager.MainFrame.CanGoBack)
             {
                 Classes.Manager.MainFrame.GoBack();
             }
-        }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            Classes.Manager.MainFrame.Navigate(new Pages.AddEditPage((sender as Button).DataContext as Data.Product));
         }
     }
 }

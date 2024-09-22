@@ -76,10 +76,10 @@ namespace PetShop321.Pages
                             Classes.Manager.MainFrame.Navigate(new Pages.AdminPage());
                             break;
                         case "Клиент":
-                            Classes.Manager.MainFrame.Navigate(new Pages.ViewProductPage());
+                            Classes.Manager.MainFrame.Navigate(new Pages.ClientPage());
                             break;
                         case "Менеджер":
-                            Classes.Manager.MainFrame.Navigate(new Pages.ViewProductPage());
+                            Classes.Manager.MainFrame.Navigate(new Pages.ManagerPage());
                             break;
                     }
                     MessageBox.Show("Успех", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);

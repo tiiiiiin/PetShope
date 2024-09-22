@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,13 @@ namespace PetShop321.Pages
     public partial class AddEditPage : Page
     {
         public string FlagAddOrEdit = "default";
+        public bool FlafPhoto = false;
         public Data.Product CurrentProduct = new Data.Product();
+
+        public AdminPage AdminPage { get; set; }
+        public ManagerPage ManagerPage { get; set; }
+        public ClientPage ClientPage { get; set; }
+
         public AddEditPage(Data.Product _product)
         {
             InitializeComponent();
@@ -53,7 +60,6 @@ namespace PetShop321.Pages
                     IdLabel.Visibility = Visibility.Hidden;
                     NameTextBox.Text = string.Empty;
                     CategoryComboBox.SelectedItem = null;
-                    //ProductImage
                     UnitTextBox.Text = string.Empty;
                     SupplierTextBox.Text = string.Empty;
                     CostTextBox.Text = string.Empty;
@@ -66,9 +72,9 @@ namespace PetShop321.Pages
                     IdLabel.Visibility = Visibility.Visible;
 
                     IdTextBox.Text = CurrentProduct.Id.ToString();
+                    FlafPhoto = true;
                     NameTextBox.Text = CurrentProduct.ProductName.Name;
-                    //CategoryComboBox.SelectedItem = Data.Trade2Entities.GetContext().Category.Where(d => d.Id = CurrentProduct.IdProductCategory).FirstOrDefault();
-                    //ProductImage
+                    CategoryComboBox.SelectedItem = Data.Trade2Entities.GetContext().Category.Where(d => d.Id == CurrentProduct.IdProductCategory).FirstOrDefault();
                     UnitTextBox.Text = CurrentProduct.Unites.Name;
                     SupplierTextBox.Text = CurrentProduct.Supplier.Name;
                     CostTextBox.Text = CurrentProduct.ProductCost.ToString();
@@ -149,18 +155,17 @@ namespace PetShop321.Pages
                         errors.AppendLine("Стоимость не может быть отрицательной");
                     }
                 }
+
                 if (string.IsNullOrEmpty(DescriptionTextBox.Text))
                 {
                     errors.AppendLine("Заполните описание");
                 }
-                if (ProductImage != null)  // Предположим, что переменная Photo — это изображение
+                if (FlafPhoto == false) 
                 {
-                    if (ProductImage.Width != 300 || ProductImage.Height != 200)
-                    {
-                        errors.AppendLine("Размер фото должен быть 300x200 пикселей.");
-                    }
+                    errors.AppendLine("Выберите иззображение");
                 }
-                //обработать фото ограничение по размеру
+               
+
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString(), "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -194,12 +199,49 @@ namespace PetShop321.Pages
 
                 }
 
-                //unittextbox
-                //supplertextbox
-                //photo add to bd посмотреть из метода где мы фото добавляли
+                var searchUnit = (from obj in Data.Trade2Entities.GetContext().Unites
+                                  where obj.Name == UnitTextBox.Text
+                                  select obj).FirstOrDefault();
+                if (searchUnit != null)
+                {
+                    CurrentProduct.IdProductName = searchUnit.Id;
+                }
+                else
+                {
+                    Data.Unites unitName = new Data.Unites()
+                    {
+                        Name = UnitTextBox.Text
+                    };
+                    Data.Trade2Entities.GetContext().Unites.Add(unitName);
+                    Data.Trade2Entities.GetContext().SaveChanges();
+
+                    CurrentProduct.ProductUnit = unitName.Id;
+
+                }
+
+
+                var searchSuppler = (from obj in Data.Trade2Entities.GetContext().Supplier
+                                  where obj.Name == SupplierTextBox.Text
+                                  select obj).FirstOrDefault();
+                if (searchSuppler != null)
+                {
+                    CurrentProduct.IdProductName = searchSuppler.Id;
+                }
+                else
+                {
+                    Data.Supplier supplierName = new Data.Supplier()
+                    {
+                        Name = UnitTextBox.Text
+                    };
+                    Data.Trade2Entities.GetContext().Supplier.Add(supplierName);
+                    Data.Trade2Entities.GetContext().SaveChanges();
+
+                    CurrentProduct.ProductUnit = supplierName.Id;
+
+                }
                 // в бд поставить значения нуль для столбцов мануфактурер и тд/ проверить арктикул
 
-                if(FlagAddOrEdit == "edit")
+                if (FlagAddOrEdit == "edit")
                 {
                     Data.Trade2Entities.GetContext().SaveChanges();
                     MessageBox.Show("Успешно сохранено!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -212,10 +254,28 @@ namespace PetShop321.Pages
                     MessageBox.Show("Успешно добавлено!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
 
+                if (AdminPage != null)
+                {
+                    AdminPage.Update();
+                    AdminPage.init();
+                }
+
+                if (ClientPage != null)
+                {
+                    ClientPage.Update();
+                    ClientPage.init();
+                }
+
+                if (ManagerPage != null)
+                {
+                    ManagerPage.Update();
+                    ManagerPage.init();
+                }
+
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -228,13 +288,24 @@ namespace PetShop321.Pages
 
             if(openFileDialog.ShowDialog() == true)
             {
-                //try
-                //{
+                try
+                {
 
-                //    BitmapImage bitmap = new BitmapImage(new Uri(openFileDialog.FileName));
+                    BitmapImage bitmap = new BitmapImage(new Uri(openFileDialog.FileName));
 
-                //    if (bitmap.PixelHeight <= 300 && bitmapWid  
-                //}
+                    if (bitmap.PixelHeight <= 200 && bitmap.PixelWidth <= 200)
+                    {
+                        ProductImage.Source= bitmap;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Разрешение изображения должно быть не более 300х200 пикселей", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка при загрузке изображения: " + ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }

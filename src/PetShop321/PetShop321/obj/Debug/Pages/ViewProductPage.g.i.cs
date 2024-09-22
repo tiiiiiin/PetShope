@@ -38,7 +38,7 @@ namespace PetShop321.Pages {
     /// <summary>
     /// ViewProductPage
     /// </summary>
-    public partial class ViewProductPage : System.Windows.Controls.Page, System.Windows.Markup.IComponentConnector, System.Windows.Markup.IStyleConnector {
+    public partial class ViewProductPage : System.Windows.Controls.Page, System.Windows.Markup.IComponentConnector {
         
         
         #line 18 "..\..\..\Pages\ViewProductPage.xaml"
@@ -190,26 +190,6 @@ namespace PetShop321.Pages {
             return;
             }
             this._contentLoaded = true;
-        }
-        
-        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Never)]
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-        void System.Windows.Markup.IStyleConnector.Connect(int connectionId, object target) {
-            switch (connectionId)
-            {
-            case 9:
-            
-            #line 86 "..\..\..\Pages\ViewProductPage.xaml"
-            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.DeleteButton_Click);
-            
-            #line default
-            #line hidden
-            break;
-            }
         }
     }
 }

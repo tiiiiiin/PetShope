@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\
+C:\Users\ADMIN\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\
 PetShop321
 none
 false
 DEBUG;TRACE
-C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\App.xaml
-5-1858356707
-2-1716197397
-30770304112
-18-1494649574
-MainWindow.xaml;Pages\AddEditPage.xaml;Pages\AdminPage.xaml;Pages\LoginPage.xaml;Pages\ViewProductPage.xaml;
+C:\Users\ADMIN\Desktop\PetShope\src\PetShop321\PetShop321\App.xaml
+7-1143901972
+22018347225
+321000090550
+18200827307
+MainWindow.xaml;Pages\AddEditPage.xaml;Pages\AdminPage.xaml;Pages\ClientPage.xaml;Pages\LoginPage.xaml;Pages\ManagerPage.xaml;Pages\ViewProductPage.xaml;
 
-False
+True
 
