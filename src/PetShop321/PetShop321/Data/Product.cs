@@ -25,11 +25,11 @@ namespace PetShop321.Data
         public int IdProductName { get; set; }
         public int ProductUnit { get; set; }
         public decimal ProductCost { get; set; }
-        public int ProductDiscountAmount { get; set; }
-        public int IdProductManufacturer { get; set; }
+        public Nullable<int> ProductDiscountAmount { get; set; }
+        public Nullable<int> IdProductManufacturer { get; set; }
         public int IdProductSupplier { get; set; }
         public int IdProductCategory { get; set; }
-        public int DiscountNow { get; set; }
+        public Nullable<int> DiscountNow { get; set; }
         public int ProductQuantityInStock { get; set; }
         public string ProductDescription { get; set; }
         public string PhotoName { get; set; }

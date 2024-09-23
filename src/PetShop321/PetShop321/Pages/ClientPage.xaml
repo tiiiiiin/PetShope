@@ -42,7 +42,8 @@
 
         <ListView x:Name="ProductListView" Margin="10" Grid.Row="2"
                   VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
-            <ListView.ItemContainerStyle>
+           
+                <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ProductQuantityInStock}" Value="0">

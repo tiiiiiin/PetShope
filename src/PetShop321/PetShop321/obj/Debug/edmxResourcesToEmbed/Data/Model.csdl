@@ -86,15 +86,15 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ArticleNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ArticleNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IdProductName" Type="Int32" Nullable="false" />
     <Property Name="ProductUnit" Type="Int32" Nullable="false" />
     <Property Name="ProductCost" Type="Decimal" Precision="19" Scale="2" Nullable="false" />
-    <Property Name="ProductDiscountAmount" Type="Int32" Nullable="false" />
-    <Property Name="IdProductManufacturer" Type="Int32" Nullable="false" />
+    <Property Name="ProductDiscountAmount" Type="Int32" />
+    <Property Name="IdProductManufacturer" Type="Int32" />
     <Property Name="IdProductSupplier" Type="Int32" Nullable="false" />
     <Property Name="IdProductCategory" Type="Int32" Nullable="false" />
-    <Property Name="DiscountNow" Type="Int32" Nullable="false" />
+    <Property Name="DiscountNow" Type="Int32" />
     <Property Name="ProductQuantityInStock" Type="Int32" Nullable="false" />
     <Property Name="ProductDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="PhotoName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -207,7 +207,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_Manufacturer">
-    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Manufacturer">

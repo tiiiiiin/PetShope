@@ -74,3 +74,7 @@ C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\AddEdi
 C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\AdminPage.g.cs
 C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\AddEditPage.baml
 C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\AdminPage.baml
+C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\ClientPage.g.cs
+C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\ManagerPage.g.cs
+C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\ClientPage.baml
+C:\Users\lisav\Desktop\PetShope\src\PetShop321\PetShop321\obj\Debug\Pages\ManagerPage.baml

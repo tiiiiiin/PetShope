@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace PetShop321.Pages
 {
@@ -26,7 +27,7 @@ namespace PetShop321.Pages
         public Data.Product CurrentProduct = new Data.Product();
 
         public AdminPage AdminPage { get; set; }
-        public ManagerPage ManagerPage { get; set; }
+        public Pages.ManagerPage ManagerPage { get; set; }
         public ClientPage ClientPage { get; set; }
 
         public AddEditPage(Data.Product _product)
@@ -41,6 +42,7 @@ namespace PetShop321.Pages
             {
                 CurrentProduct = _product;
                 FlagAddOrEdit = "edit";
+                FlafPhoto = true;
             }
 
             DataContext = CurrentProduct;
@@ -162,7 +164,7 @@ namespace PetShop321.Pages
                 }
                 if (FlafPhoto == false) 
                 {
-                    errors.AppendLine("Выберите иззображение");
+                    errors.AppendLine("Выберите изображение");
                 }
                
 
@@ -204,7 +206,7 @@ namespace PetShop321.Pages
                                   select obj).FirstOrDefault();
                 if (searchUnit != null)
                 {
-                    CurrentProduct.IdProductName = searchUnit.Id;
+                    CurrentProduct.ProductUnit = searchUnit.Id;
                 }
                 else
                 {
@@ -225,18 +227,18 @@ namespace PetShop321.Pages
                                   select obj).FirstOrDefault();
                 if (searchSuppler != null)
                 {
-                    CurrentProduct.IdProductName = searchSuppler.Id;
+                    CurrentProduct.IdProductSupplier = searchSuppler.Id;
                 }
                 else
                 {
                     Data.Supplier supplierName = new Data.Supplier()
                     {
-                        Name = UnitTextBox.Text
+                        Name = SupplierTextBox.Text
                     };
                     Data.Trade2Entities.GetContext().Supplier.Add(supplierName);
                     Data.Trade2Entities.GetContext().SaveChanges();
 
-                    CurrentProduct.ProductUnit = supplierName.Id;
+                    CurrentProduct.IdProductSupplier = supplierName.Id;
 
                 }
                 // в бд поставить значения нуль для столбцов мануфактурер и тд/ проверить арктикул
@@ -281,32 +283,38 @@ namespace PetShop321.Pages
 
         private void ProductImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog 
-            { 
-                Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png; *.jpeg; *.jpg|All files (*.*)|*.*"
-            };
-
-            if(openFileDialog.ShowDialog() == true)
-            {
+            
                 try
                 {
+                    Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+                    openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
 
-                    BitmapImage bitmap = new BitmapImage(new Uri(openFileDialog.FileName));
+                    if (openFileDialog.ShowDialog() == true)
+                    {
+                        var imageSource = new BitmapImage(new Uri(openFileDialog.FileName));
 
-                    if (bitmap.PixelHeight <= 200 && bitmap.PixelWidth <= 200)
-                    {
-                        ProductImage.Source= bitmap;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Разрешение изображения должно быть не более 300х200 пикселей", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        if (imageSource.PixelWidth <= 300 && imageSource.PixelHeight <= 200)
+                        {
+                            FlafPhoto = true;
+                            ProductImage.Source = imageSource;
+
+                            byte[] imageBytes = File.ReadAllBytes(openFileDialog.FileName);
+                            string imageName = System.IO.Path.GetFileName(openFileDialog.FileName);
+
+                            CurrentProduct.PhotoName = imageName;
+                            CurrentProduct.ProductPhoto = imageBytes;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выберите изображение с разрешением не более 300x200 пикселей.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Ошибка при загрузке изображения: " + ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Ошибка при выборе изображения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            }
+            
         }
     }
 }

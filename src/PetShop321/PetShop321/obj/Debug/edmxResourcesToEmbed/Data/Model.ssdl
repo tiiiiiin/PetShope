@@ -71,15 +71,15 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ArticleNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ArticleNum" Type="nvarchar" MaxLength="50" />
     <Property Name="IdProductName" Type="int" Nullable="false" />
     <Property Name="ProductUnit" Type="int" Nullable="false" />
     <Property Name="ProductCost" Type="decimal" Precision="19" Scale="2" Nullable="false" />
-    <Property Name="ProductDiscountAmount" Type="int" Nullable="false" />
-    <Property Name="IdProductManufacturer" Type="int" Nullable="false" />
+    <Property Name="ProductDiscountAmount" Type="int" />
+    <Property Name="IdProductManufacturer" Type="int" />
     <Property Name="IdProductSupplier" Type="int" Nullable="false" />
     <Property Name="IdProductCategory" Type="int" Nullable="false" />
-    <Property Name="DiscountNow" Type="int" Nullable="false" />
+    <Property Name="DiscountNow" Type="int" />
     <Property Name="ProductQuantityInStock" Type="int" Nullable="false" />
     <Property Name="ProductDescription" Type="nvarchar" MaxLength="250" />
     <Property Name="PhotoName" Type="nvarchar" MaxLength="50" />
@@ -251,7 +251,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_Manufacturer">
-    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Manufacturer">
