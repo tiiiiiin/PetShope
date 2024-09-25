@@ -37,6 +37,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
             <Setter Property="Background" Value="#FF498C51"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
         </Style>
     </Application.Resources>
 </Application>

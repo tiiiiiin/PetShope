@@ -38,7 +38,7 @@
             <Label Content="Изображение:" Grid.Row="2" Grid.Column="2"></Label>
             <Label Content="Подробное описание:" Grid.Row="3" Grid.Column="2"></Label>
 
-            <TextBox x:Name="IdTextBox" Grid.Row="0" Grid.Column="1"></TextBox>
+            <TextBox x:Name="IdTextBox" Grid.Row="0" Grid.Column="1" IsEnabled="False"></TextBox>
             <TextBox x:Name="NameTextBox" Grid.Row="1" Grid.Column="1"></TextBox>
             <ComboBox x:Name="CategoryComboBox" Grid.Row="2" Grid.Column="1" DisplayMemberPath="Name" VerticalAlignment="Top"></ComboBox>
             <TextBox x:Name="QuantityTextBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"></TextBox>
